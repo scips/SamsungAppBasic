@@ -1,0 +1,4 @@
+SamsungAppBasic
+===============
+
+Basic Samsung Application
