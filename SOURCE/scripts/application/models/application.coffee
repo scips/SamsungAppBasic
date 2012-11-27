@@ -4,7 +4,7 @@ define [
   "application/views/loadingScreen",
   "application/controllers/screen1",
   "application/views/screen1Screen"
-  ""], ($,loadingController,loadingView,screen1Controller,screen1View) ->
+  "application/models/input"], ($,loadingController,loadingView,screen1Controller,screen1View,Input) ->
 
   class Application
     init: () ->
@@ -14,10 +14,15 @@ define [
       @screen1Controller.unload()
       console.log("Application initialized...")
       $('body').bind 'keydown', (e) =>
-        @dispatch(e.which)
+        @dispatch(Input.keyEventToEvent(e))
+      $('body').bind 'LOADED', () =>
+        @dispatch('LOADED')
 
     dispatch: (e)->
-      console.log "keydown evt fired #{e}"
-      if (e == 65) 
-        @loadingController.unload()
-        @screen1Controller.load()
+      console.log "dispatch received: #{e}"
+      switch e
+        when 'LOADED' 
+          @loadingController.unload()
+          @screen1Controller.load()
+        when 'KEY_UP'
+          $('body').trigger('LOADED')
