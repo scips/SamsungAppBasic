@@ -3,7 +3,7 @@ define [
   "application/controllers/loading",
   "application/views/loadingScreen",
   "application/controllers/screen1",
-  "application/views/screen1Screen"
+  "application/views/screen1Screen",
   "application/models/input"], ($,loadingController,loadingView,screen1Controller,screen1View,Input) ->
 
   class Application
@@ -15,14 +15,15 @@ define [
       console.log("Application initialized...")
       $('body').bind 'keydown', (e) =>
         @dispatch(Input.keyEventToEvent(e))
-      $('body').bind 'LOADED', () =>
-        @dispatch('LOADED')
+      $('body').bind 'AppEvent', (e,action) =>
+        @dispatch(action)
 
     dispatch: (e)->
-      console.log "dispatch received: #{e}"
+      console.log "dispatch received:"
+      console.log e
       switch e
         when 'LOADED' 
           @loadingController.unload()
           @screen1Controller.load()
         when 'KEY_UP'
-          $('body').trigger('LOADED')
+          $('body').trigger('AppEvent',['LOADED'])

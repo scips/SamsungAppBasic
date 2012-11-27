@@ -16,19 +16,20 @@ define(["jquery", "application/controllers/loading", "application/views/loadingS
       $('body').bind('keydown', function(e) {
         return _this.dispatch(Input.keyEventToEvent(e));
       });
-      return $('body').bind('LOADED', function() {
-        return _this.dispatch('LOADED');
+      return $('body').bind('AppEvent', function(e, action) {
+        return _this.dispatch(action);
       });
     };
 
     Application.prototype.dispatch = function(e) {
-      console.log("dispatch received: " + e);
+      console.log("dispatch received:");
+      console.log(e);
       switch (e) {
         case 'LOADED':
           this.loadingController.unload();
           return this.screen1Controller.load();
         case 'KEY_UP':
-          return $('body').trigger('LOADED');
+          return $('body').trigger('AppEvent', ['LOADED']);
       }
     };
 
