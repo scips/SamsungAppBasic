@@ -1,11 +1,5 @@
-define ["jquery"], ($) ->
+define ["jquery","application/views/screen"], ($,ScreenView) ->
 
-  class screen1ScreenView
+  class screen1ScreenView extends ScreenView
     constructor:(@divID)->
-      console.log "Screen view with id: #{divID}"
-
-    show: ->
-      $("#{@divID}").show()
-
-    hide: ->
-      $("#{@divID}").hide()
+      super @divID

@@ -1,12 +1,12 @@
-define ["jquery"], ($) ->
+define ["jquery","application/controllers/controller"], ($,Controller) ->
 
-  class loadingController
+  class loadingController extends Controller
+
     constructor:(@view)->
-      console.log "Loading controller created"
+      super @view
 
     load:() ->
-      console.log "load called"
-      @view.show()
+      super()
 
     unload:() ->
-      @view.hide()
+      super()
