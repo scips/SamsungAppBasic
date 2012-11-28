@@ -4,8 +4,7 @@ define ["jquery","underscore","application/views/screen"], ($,_,ScreenView) ->
     getItemTemplate:()-> 
       """
         <li class="item">
-          <h2><%= name %></h2>
-          <p><%= value %></p>
+          <span class="title"><%= title %></span><span class="value"><%= value %></span>
         </li>
       """
 
@@ -22,4 +21,7 @@ define ["jquery","underscore","application/views/screen"], ($,_,ScreenView) ->
       template = @getItemTemplate()
       if @data && @data.length >0
         list = for item in @data
-          _.template(template,item)
+          liItem = 
+            title: item.name
+            value: item.value
+          _.template(template,liItem)

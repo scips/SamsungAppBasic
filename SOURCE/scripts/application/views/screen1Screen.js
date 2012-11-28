@@ -9,7 +9,7 @@ define(["jquery", "underscore", "application/views/screen"], function($, _, Scre
     __extends(screen1ScreenView, _super);
 
     screen1ScreenView.prototype.getItemTemplate = function() {
-      return "<li class=\"item\">\n  <h2><%= name %></h2>\n  <p><%= value %></p>\n</li>";
+      return "<li class=\"item\">\n  <span class=\"title\"><%= title %></span><span class=\"value\"><%= value %></span>\n</li>";
     };
 
     function screen1ScreenView(divID) {
@@ -26,7 +26,7 @@ define(["jquery", "underscore", "application/views/screen"], function($, _, Scre
     };
 
     screen1ScreenView.prototype.parseTemplate = function() {
-      var item, list, template;
+      var item, liItem, list, template;
       template = this.getItemTemplate();
       if (this.data && this.data.length > 0) {
         return list = (function() {
@@ -35,7 +35,11 @@ define(["jquery", "underscore", "application/views/screen"], function($, _, Scre
           _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             item = _ref[_i];
-            _results.push(_.template(template, item));
+            liItem = {
+              title: item.name,
+              value: item.value
+            };
+            _results.push(_.template(template, liItem));
           }
           return _results;
         }).call(this);
