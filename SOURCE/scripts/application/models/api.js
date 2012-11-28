@@ -11,18 +11,16 @@ define([], function() {
 
     RtbfApi.prototype.fetchData = function() {
       var _this = this;
-      console.log("Get Data called");
       return $.ajax(this.url, {
         async: false,
-        sucess: function(data, textStatus, jqXHR) {
+        success: function(data, textStatus, jqXHR) {
           _this.data = data;
-          _this.error = textStatus;
-          return console.log("data fetched");
+          return _this.error = textStatus;
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          _this.error = textStatus;
-          return console.log("error occured");
-        }
+          return _this.error = textStatus;
+        },
+        complete: function(jqXHR, textStatus) {}
       });
     };
 

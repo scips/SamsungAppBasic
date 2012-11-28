@@ -6,9 +6,10 @@ require.config({
 });
 
 require(["application/models/application","jquery"],function(Application, $) {
-    console.log("Bootstrap");
-    $(function(){
-        application = new Application();
-        application.init();
-    });
+  $.support.cors = true;
+  console.log("Bootstrap");
+  $(function(){
+      application = new Application();
+      application.init();
+  });
 });

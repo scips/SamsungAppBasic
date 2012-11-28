@@ -15,9 +15,7 @@ define(["jquery", "application/controllers/controller", "application/models/api"
     }
 
     loadingController.prototype.load = function() {
-      console.log("Loading controller load");
       loadingController.__super__.load.call(this);
-      console.log("Gonna get data");
       return this.api.fetchData();
     };
 

@@ -6,9 +6,7 @@ define ["jquery","application/controllers/controller","application/models/api"],
       super @view
 
     load:() ->
-      console.log "Loading controller load"
       super()
-      console.log "Gonna get data"
       @api.fetchData()
 
     unload:() ->

@@ -7,16 +7,15 @@ define [],() ->
 
 
     fetchData: () ->
-      console.log "Get Data called"
       $.ajax(@url,
         async: false
-        sucess: (data,textStatus,jqXHR) =>
+        success: (data,textStatus,jqXHR) =>
           @data = data
           @error = textStatus
-          console.log "data fetched"
         error: (jqXHR, textStatus,errorThrown) =>
           @error = textStatus
-          console.log "error occured"
+        complete: (jqXHR, textStatus) =>
+          
         )
 
     getError: () ->
