@@ -4,11 +4,13 @@ define [
   "application/views/loadingScreen",
   "application/controllers/screen1",
   "application/views/screen1Screen",
-  "application/models/input"], ($,loadingController,loadingView,screen1Controller,screen1View,Input) ->
+  "application/models/input",
+  "application/models/api"], ($,loadingController,loadingView,screen1Controller,screen1View,Input,Api) ->
 
   class Application
     init: () ->
-      @loadingController = new loadingController(new loadingView("#loading"))
+      @api = new Api()
+      @loadingController = new loadingController(new loadingView("#loading"),@api)
       @loadingController.load()
       @screen1Controller = new screen1Controller(new screen1View("#screen1"))
       @screen1Controller.unload()
