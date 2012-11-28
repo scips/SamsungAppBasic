@@ -6,8 +6,10 @@ define ["jquery","application/controllers/controller","application/models/api"],
       super @view
 
     load:() ->
-      super()
+      @api.setCallback(@dataLoaded)
       @api.fetchData()
 
     unload:() ->
-      super()
+
+    dataLoaded:() ->
+      $('body').trigger('AppEvent',['LOADED'])

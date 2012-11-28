@@ -15,12 +15,14 @@ define(["jquery", "application/controllers/controller", "application/models/api"
     }
 
     loadingController.prototype.load = function() {
-      loadingController.__super__.load.call(this);
+      this.api.setCallback(this.dataLoaded);
       return this.api.fetchData();
     };
 
-    loadingController.prototype.unload = function() {
-      return loadingController.__super__.unload.call(this);
+    loadingController.prototype.unload = function() {};
+
+    loadingController.prototype.dataLoaded = function() {
+      return $('body').trigger('AppEvent', ['LOADED']);
     };
 
     return loadingController;

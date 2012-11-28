@@ -5,18 +5,29 @@ define [
   "application/controllers/screen1",
   "application/views/screen1Screen",
   "application/models/input",
-  "application/models/api"], ($,loadingController,loadingView,screen1Controller,screen1View,Input,Api) ->
+  "application/models/api"
+  "application/models/statemachine"], ($,loadingController,loadingView,screen1Controller,screen1View,Input,Api,StateMachine) ->
 
   class Application
     init: () ->
       @api = new Api()
+      @statemachine = new StateMachine()
+      
       @loadingController = new loadingController(new loadingView("#loading"),@api)
       @loadingController.load()
+      @statemachine.add(@loadingController)
+      
       @screen1Controller = new screen1Controller(new screen1View("#screen1"))
       @screen1Controller.unload()
+      @statemachine.add(@screen1Controller)
+
+      @loadingController.activate()
+
       console.log("Application initialized...")
+      
       $('body').bind 'keydown', (e) =>
         @dispatch(Input.keyEventToEvent(e))
+
       $('body').bind 'AppEvent', (e,action) =>
         @dispatch(action)
 
@@ -25,7 +36,4 @@ define [
       console.log e
       switch e
         when 'LOADED' 
-          @loadingController.unload()
-          @screen1Controller.load()
-        when 'KEY_UP'
-          $('body').trigger('AppEvent',['LOADED'])
+          @statemachine.trigger("change",@screen1Controller)

@@ -5,7 +5,5 @@ define ["jquery","application/controllers/controller"], ($,Controller) ->
       super @view
 
     load:() ->
-      super()
 
     unload:() ->
-      super()

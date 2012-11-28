@@ -9,13 +9,26 @@ define([], function() {
       this.data = [];
     }
 
+    RtbfApi.prototype.setCallback = function(callback) {
+      this.callback = callback;
+    };
+
     RtbfApi.prototype.fetchData = function() {
-      var _this = this;
+      var async,
+        _this = this;
+      if (this.callback) {
+        async = true;
+      } else {
+        async = false;
+      }
       return $.ajax(this.url, {
-        async: false,
+        async: async,
         success: function(data, textStatus, jqXHR) {
           _this.data = data;
-          return _this.error = textStatus;
+          _this.error = textStatus;
+          if (_this.callback) {
+            return _this.callback(data);
+          }
         },
         error: function(jqXHR, textStatus, errorThrown) {
           return _this.error = textStatus;

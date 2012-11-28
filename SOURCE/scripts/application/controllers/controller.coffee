@@ -2,8 +2,8 @@ define ["jquery"], () ->
   class Controller
     constructor:(@view)->
 
-    load:() ->
+    activate:() ->
       @view.show()
 
-    unload:() ->
+    deactivate:() ->
       @view.hide()
