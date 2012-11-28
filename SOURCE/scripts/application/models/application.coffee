@@ -17,8 +17,7 @@ define [
       @loadingController.load()
       @statemachine.add(@loadingController)
       
-      @screen1Controller = new screen1Controller(new screen1View("#screen1"))
-      @screen1Controller.unload()
+      @screen1Controller = new screen1Controller(new screen1View("#screen1"),@api)
       @statemachine.add(@screen1Controller)
 
       @loadingController.activate()

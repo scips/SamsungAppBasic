@@ -13,6 +13,10 @@ define([], function() {
       this.callback = callback;
     };
 
+    RtbfApi.prototype.setErrorCallback = function(errorCallback) {
+      this.errorCallback = errorCallback;
+    };
+
     RtbfApi.prototype.fetchData = function() {
       var async,
         _this = this;
@@ -31,7 +35,10 @@ define([], function() {
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          return _this.error = textStatus;
+          _this.error = textStatus;
+          if (_this.errorCallback) {
+            return _this.errorCallback(textStatus, errorThrown);
+          }
         },
         complete: function(jqXHR, textStatus) {}
       });

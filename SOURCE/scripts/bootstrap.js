@@ -1,6 +1,7 @@
 require.config({
     paths: {
-        "jquery": "vendor/jquery/jquery"
+        "jquery": "vendor/jquery/jquery",
+        "underscore": "vendor/underscore/underscore"
     },
     waitSeconds: 5
 });

@@ -13,8 +13,7 @@ define(["jquery", "application/controllers/loading", "application/views/loadingS
       this.loadingController = new loadingController(new loadingView("#loading"), this.api);
       this.loadingController.load();
       this.statemachine.add(this.loadingController);
-      this.screen1Controller = new screen1Controller(new screen1View("#screen1"));
-      this.screen1Controller.unload();
+      this.screen1Controller = new screen1Controller(new screen1View("#screen1"), this.api);
       this.statemachine.add(this.screen1Controller);
       this.loadingController.activate();
       console.log("Application initialized...");

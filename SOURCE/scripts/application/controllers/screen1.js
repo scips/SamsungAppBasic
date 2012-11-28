@@ -8,12 +8,19 @@ define(["jquery", "application/controllers/controller"], function($, Controller)
 
     __extends(screen1Controller, _super);
 
-    function screen1Controller(view) {
+    function screen1Controller(view, api) {
       this.view = view;
+      this.api = api;
       screen1Controller.__super__.constructor.call(this, this.view);
     }
 
-    screen1Controller.prototype.load = function() {};
+    screen1Controller.prototype.activate = function() {
+      this.data = this.api.getData();
+      this.view.setData(this.data);
+      console.log("data screen1:");
+      console.log(this.data);
+      return screen1Controller.__super__.activate.call(this);
+    };
 
     screen1Controller.prototype.unload = function() {};
 

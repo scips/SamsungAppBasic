@@ -7,6 +7,8 @@ define [],() ->
 
     setCallback: (@callback) ->
 
+    setErrorCallback: (@errorCallback) ->
+
     fetchData: () ->
       if @callback
         async = true
@@ -21,6 +23,7 @@ define [],() ->
           @callback(data) if @callback
         error: (jqXHR, textStatus,errorThrown) =>
           @error = textStatus
+          @errorCallback(textStatus,errorThrown) if @errorCallback
         complete: (jqXHR, textStatus) =>
 
         )

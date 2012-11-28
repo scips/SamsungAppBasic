@@ -11,5 +11,7 @@ define ["jquery","application/controllers/controller","application/models/api"],
 
     unload:() ->
 
-    dataLoaded:() ->
+    dataLoaded:() =>
+      console.log "data:"
+      console.log @api.getData()
       $('body').trigger('AppEvent',['LOADED'])
