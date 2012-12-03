@@ -1,7 +1,20 @@
 require.config({
     paths: {
         "jquery": "vendor/jquery/jquery",
-        "underscore": "vendor/underscore/underscore"
+        "depend": "vendor/require/plugins/depend",
+        "underscore": "vendor/underscore/underscore",
+        "highcharts": "vendor/highcharts/highcharts",
+        'highchartsexport': "vendor/highcharts/exporting"
+    },
+    shim: {
+      highcharts: {
+        deps: ['jquery'],
+        exports: "Highcharts"
+      },
+      highchartsexport: {
+        deps: ['highcharts'],
+        exports: "Exporting"
+      }
     },
     waitSeconds: 5
 });
