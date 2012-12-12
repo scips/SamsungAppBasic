@@ -10,3 +10,7 @@ li.item .title {
 li.item .value {
   width: 100px;
 }
+#screen1 .graph {
+  width: 1000px;
+  height: 500px;
+}

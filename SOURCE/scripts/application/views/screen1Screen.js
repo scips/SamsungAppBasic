@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(["jquery", "underscore", "application/views/screen", "highcharts", "highchartsexport"], function($, _, ScreenView, Highcharts, Exporting) {
+define(["jquery", "underscore", "application/views/screen", "vendor/jquery/jquery.flot", "vendor/jquery/jquery.flot.time"], function($, _, ScreenView, jQueryFlot, jQueryFlotTime) {
   var screen1ScreenView;
   return screen1ScreenView = (function(_super) {
 
@@ -48,78 +48,21 @@ define(["jquery", "underscore", "application/views/screen", "highcharts", "highc
     };
 
     screen1ScreenView.prototype.displayGraph = function() {
-      var chart, item, seriesData;
-      seriesData = (function() {
-        var _i, _len, _ref, _results;
-        _ref = this.data;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          item = _ref[_i];
-          _results.push(parseInt(item.value));
+      var options, placeholder, seriesData;
+      seriesData = this.data;
+      placeholder = $("" + this.divID + " .graph");
+      options = {
+        lines: {
+          show: true
+        },
+        points: {
+          show: true
+        },
+        xaxis: {
+          mode: "time"
         }
-        return _results;
-      }).call(this);
-      console.log(seriesData);
-      return chart = new Highcharts.Chart({
-        chart: {
-          renderTo: $("" + this.divID + " .graph")[0],
-          type: 'bar'
-        },
-        title: {
-          text: 'Historic World Population by Region'
-        },
-        subtitle: {
-          text: 'Source: Wikipedia.org'
-        },
-        xAxis: {
-          categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
-          title: {
-            text: null
-          }
-        },
-        yAxis: {
-          min: 0,
-          title: {
-            text: 'Population (millions)',
-            align: 'high'
-          },
-          labels: {
-            overflow: 'justify'
-          }
-        },
-        tooltip: {
-          formatter: function() {
-            return '' + this.series.name(+': ' + this.y(+' millions'));
-          }
-        },
-        plotOptions: {
-          bar: {
-            dataLabels: {
-              enabled: true
-            }
-          }
-        },
-        legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'top',
-          x: -100,
-          y: 100,
-          floating: true,
-          borderWidth: 1,
-          backgroundColor: '#FFFFFF',
-          shadow: true
-        },
-        credits: {
-          enabled: false
-        },
-        series: [
-          {
-            name: 'Hits',
-            data: seriesData
-          }
-        ]
-      });
+      };
+      return $.plot(placeholder, seriesData, options);
     };
 
     return screen1ScreenView;

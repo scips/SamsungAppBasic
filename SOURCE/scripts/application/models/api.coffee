@@ -2,7 +2,7 @@ define [],() ->
 
   class RtbfApi
     constructor:() ->
-      @url = "http://www.local.rtbf.be/api/test/demo"
+      @url = "http://www.local.rtbf.be/api/test/demo2"
       @data = []
 
     setCallback: (@callback) ->

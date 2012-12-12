@@ -5,7 +5,7 @@ define([], function() {
   return RtbfApi = (function() {
 
     function RtbfApi() {
-      this.url = "http://www.local.rtbf.be/api/test/demo";
+      this.url = "http://www.local.rtbf.be/api/test/demo2";
       this.data = [];
     }
 
