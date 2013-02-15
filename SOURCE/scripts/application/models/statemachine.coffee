@@ -8,8 +8,13 @@ define ["jquery"],($) ->
         else
           controller.deactivate()
       # add a proxied method
-      controller.active = $.proxy () ->
-        @trigger "change", controller
+      controller.active = $.proxy(
+        () ->
+          @trigger("change",controller)
+        ,@
+      )
+      console.log "controller.active added"
+      console.log controller.active
 
 
     bind: () ->

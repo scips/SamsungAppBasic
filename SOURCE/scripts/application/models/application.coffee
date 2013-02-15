@@ -20,7 +20,7 @@ define [
       @screen1Controller = new screen1Controller(new screen1View("#screen1"),@api)
       @statemachine.add(@screen1Controller)
 
-      @loadingController.activate()
+      @loadingController.active()
 
       console.log("Application initialized...")
       
@@ -35,4 +35,5 @@ define [
       console.log e
       switch e
         when 'LOADED' 
-          @statemachine.trigger("change",@screen1Controller)
+          @screen1Controller.active()
+          # @statemachine.trigger("change",@screen1Controller)

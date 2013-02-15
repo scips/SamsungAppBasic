@@ -9,10 +9,12 @@ define(["jquery"], function() {
     }
 
     Controller.prototype.activate = function() {
+      console.log("activate called");
       return this.view.show();
     };
 
     Controller.prototype.deactivate = function() {
+      console.log("deactivate called");
       return this.view.hide();
     };
 

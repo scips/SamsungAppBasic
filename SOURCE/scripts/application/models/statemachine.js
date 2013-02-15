@@ -14,9 +14,11 @@ define(["jquery"], function($) {
           return controller.deactivate();
         }
       });
-      return controller.active = $.proxy(function() {
+      controller.active = $.proxy(function() {
         return this.trigger("change", controller);
-      });
+      }, this);
+      console.log("controller.active added");
+      return console.log(controller.active);
     };
 
     StateMachine.prototype.bind = function() {

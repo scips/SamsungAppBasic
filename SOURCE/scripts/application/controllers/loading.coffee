@@ -7,7 +7,12 @@ define ["jquery","application/controllers/controller","application/models/api"],
 
     load:() ->
       @api.setCallback(@dataLoaded)
-      @api.fetchData()
+      #@api.fetchData()
+      setTimeout(
+        ()=>
+          $('body').trigger('AppEvent',['LOADED'])
+        ,1500
+        )
 
     unload:() ->
 

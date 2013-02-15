@@ -15,7 +15,7 @@ define(["jquery", "application/controllers/loading", "application/views/loadingS
       this.statemachine.add(this.loadingController);
       this.screen1Controller = new screen1Controller(new screen1View("#screen1"), this.api);
       this.statemachine.add(this.screen1Controller);
-      this.loadingController.activate();
+      this.loadingController.active();
       console.log("Application initialized...");
       $('body').bind('keydown', function(e) {
         return _this.dispatch(Input.keyEventToEvent(e));
@@ -30,7 +30,7 @@ define(["jquery", "application/controllers/loading", "application/views/loadingS
       console.log(e);
       switch (e) {
         case 'LOADED':
-          return this.statemachine.trigger("change", this.screen1Controller);
+          return this.screen1Controller.active();
       }
     };
 

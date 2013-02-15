@@ -18,8 +18,11 @@ define(["jquery", "application/controllers/controller", "application/models/api"
     }
 
     loadingController.prototype.load = function() {
+      var _this = this;
       this.api.setCallback(this.dataLoaded);
-      return this.api.fetchData();
+      return setTimeout(function() {
+        return $('body').trigger('AppEvent', ['LOADED']);
+      }, 1500);
     };
 
     loadingController.prototype.unload = function() {};
